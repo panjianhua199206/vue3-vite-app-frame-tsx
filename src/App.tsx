@@ -15,6 +15,7 @@ export default {
 </script> */}
 
 import { defineComponent } from 'vue'
+import Title from './components/Title'
 
 export default defineComponent({
   name: 'App',
@@ -22,6 +23,7 @@ export default defineComponent({
     return () =>
       <>
         <div class="container">
+          <Title title="Hey!This my title! -- pan_Teacher" />
           Hello World! To vite tsx!
         </div>
       </>
