@@ -1,4 +1,6 @@
 # vue3-vite-app-frame-ts
+新建 vue3 目前有俩种，分别是 vite 和 @vue/cli。   
+在 Vue-Cli 使用中，发现热更新和编译页面非常慢，所以Vue3.0作者放弃基于 Webpack 开发的脚手架，全新开发新的脚手架：Vite 。
 
 #### 介绍
 1. 创建模式： vue-cli3 / yarn create vite-app {pro-name}   
