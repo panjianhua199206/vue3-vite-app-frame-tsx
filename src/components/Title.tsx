@@ -49,5 +49,12 @@ export default defineComponent({
           { props.title }
         </h1>
       </>
+  },
+  created() {
+    let tupleType: [string, boolean];
+    tupleType = ["semlinker", true];
+    
+    console.log(tupleType);
+      
   }
 })
