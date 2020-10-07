@@ -3,5 +3,5 @@ export interface State {
 }
 
 export const state: State = {
-    title: 'Vue(v3) 与 tsx 的结合~',
+    title: '欢迎来到 vite Vue-Next 之 tsx框架',
 };

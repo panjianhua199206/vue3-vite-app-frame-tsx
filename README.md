@@ -50,3 +50,6 @@ location / {
     try_files $uri $uri/ /index.html;        #匹配不到任何静态资源，跳到同一个index.html
 }
 ```
+
+### less 
+yarn add less less-loader -D
