@@ -1,0 +1,59 @@
+/* 滑块 */
+.pan-slider {
+    width: calc(100% - 24px);
+    height: 24px;
+    margin: 0 12px;
+    position: relative;
+    border-radius: 999px;
+    .bg-pan-slider {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      border-radius: 999px;
+      transform: translate(0, -50%);
+      z-index: 1;
+    }
+    .bg-pan-move {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      border-radius: 999px;
+      transform: translate(0, -50%);
+      z-index: 2;
+    }
+    .pan-slider-bar {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 999px;
+      z-index: 3;
+    }
+    .pan-slider-line-wrapper {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: #fff;
+      position: relative;
+      left: -10px;
+      box-shadow: 2px 2px 4px 0 rgba(82, 86, 107, 0.1);
+      cursor: pointer;
+      div {
+        width: 2px;
+        height: 10px;
+        position: absolute;
+        top: 7px;
+      }
+      .pan-slider-line1 {
+        left: 6px;
+      }
+      .pan-slider-line2 {
+        left: 11px;
+      }
+      .pan-slider-line3 {
+        left: 16px;
+      }
+    }
+  }
