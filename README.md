@@ -13,6 +13,7 @@
 
 ### vue-router  
 yarn add vue-router@4.0.0-beta.13 [【可以到npm官网查vue-router最新版本】](https://www.npmjs.com/package/vue-router)   
+或 yarn add vue-router@next 【这是最新next版本】
 
 新建src/router/index.ts; 此时main.ts:   
 ```
@@ -26,8 +27,6 @@ createApp(App).use(router).mount('#app');
 ### vuex
 yarn add vuex@4.0.0-beta.4 [【可以到npm官网查vuex最新版本】](https://www.npmjs.com/package/vuex)    
 
-或 yarn add vue-router@next 【这是最新next版本】
-
 新建src/store/index.ts; 此时main.ts:   
 ```
 import { createApp } from 'vue'; 
@@ -37,4 +36,17 @@ import router from './router';
 import store from './store';
 
 createApp(App).use(router).use(store).mount('#app');
+```
+
+### nginx 
+vue路由history模式刷新会报404错误，所以搭配nginx里的try_files指令；   
+try_files file ... uri 或 try_files file ... = code   
+
+即： try_files $uri $uri/ /index.html;   
+```
+location / {
+    root   ../dist;
+    index  index.html index.htm;
+    try_files $uri $uri/ /index.html;        #匹配不到任何静态资源，跳到同一个index.html
+}
 ```
