@@ -12,9 +12,9 @@
 [vue3.0 tsx](https://iiong.com/vue3-use-notes/)  
 
 ### vue-router  
-yarn add vue-router@4.0.0-beta.13  [【可以到npm官网查查最新版本】](https://www.npmjs.com/package/vue-router)   
+yarn add vue-router@4.0.0-beta.13 [【可以到npm官网查vue-router最新版本】](https://www.npmjs.com/package/vue-router)   
 
-此时main.ts:   
+新建src/router/index.ts; 此时main.ts:   
 ```
 import { createApp } from 'vue'; 
 import App from './App';
@@ -22,4 +22,17 @@ import './index.css'
 import router from './router';
 
 createApp(App).use(router).mount('#app');
+```
+### vuex
+yarn add vuex@4.0.0-beta.4 [【可以到npm官网查vuex最新版本】](https://www.npmjs.com/package/vuex)    
+
+新建src/store/index.ts; 此时main.ts:   
+```
+import { createApp } from 'vue'; 
+import App from './App';
+import './index.css'
+import router from './router';
+import store from './store';
+
+createApp(App).use(router).use(store).mount('#app');
 ```
