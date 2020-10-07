@@ -26,6 +26,8 @@ createApp(App).use(router).mount('#app');
 ### vuex
 yarn add vuex@4.0.0-beta.4 [【可以到npm官网查vuex最新版本】](https://www.npmjs.com/package/vuex)    
 
+或 yarn add vue-router@next 【这是最新next版本】
+
 新建src/store/index.ts; 此时main.ts:   
 ```
 import { createApp } from 'vue'; 
