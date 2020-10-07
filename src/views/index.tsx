@@ -12,6 +12,7 @@ export default defineComponent({
   setup(props, context) {
     return () =>
       <>
+        <h3>7878</h3>
         <h1 class="title" onClick={() => context.emit('data')}>
           { props.title }
         </h1>
