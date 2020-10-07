@@ -13,8 +13,8 @@ export default {
   }
 }
 </script> */}
-
-import { defineComponent } from 'vue'
+/* 2020/10/06 no vue-router && no vuex */
+/* import { defineComponent } from 'vue'
 import Title from './components/Title'
 
 export default defineComponent({
@@ -28,4 +28,18 @@ export default defineComponent({
         </div>
       </>
   }
-})
+}) */
+
+/* 2020/10/07 add vue-router && vuex */
+import { defineComponent } from 'vue';
+import {RouterView} from 'vue-router';
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    return () => 
+      <>
+        <RouterView/>
+      </>
+  }
+});
