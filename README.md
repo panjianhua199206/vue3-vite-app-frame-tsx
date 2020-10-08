@@ -24,6 +24,7 @@ import router from './router';
 
 createApp(App).use(router).mount('#app');
 ```
+
 ### vuex
 yarn add vuex@4.0.0-beta.4 [【可以到npm官网查vuex最新版本】](https://www.npmjs.com/package/vuex)    
 
@@ -62,3 +63,8 @@ declare module "*.less" {
   export default less;
 }
 ```
+
+### axios
+yarn add axios  
+
+
