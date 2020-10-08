@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import style from './pan-slider.less'
+import panLess from './pan-slider.module.less'
 
 export default defineComponent({
     name: 'PanSlider',
@@ -57,17 +57,17 @@ export default defineComponent({
         
         return (
             <>
-                <div class={style["pan-slider"]}>
-                    <div class="bg-pan-slider" style={panSliderCss}></div>
-                    <div class="bg-pan-move" style={barStyle}></div>
-                    <div class="pan-slider-bar" style={`left: ${panSliderWidth}%`}>
+                <div class={panLess["pan-slider"]}>
+                    <div class={[panLess["bg-pan-slider"], 'bg-pan-slider'].join(' ')} style={panSliderCss}></div>
+                    <div class={panLess["bg-pan-move"]} style={barStyle}></div>
+                    <div class={panLess["pan-slider-bar"]} style={`left: ${panSliderWidth}%`}>
                         <div
-                            class="pan-slider-line-wrapper cursor"
+                            class={panLess["pan-slider-line-wrapper"]}
                             onMousedown={this.bindpanSliderStart.bind(this)}
                         >
-                            <div class="pan-slider-line1" style={ `background: ${bgLine} `}></div>
-                            <div class="pan-slider-line2" style={ `background: ${bgLine} `}></div>
-                            <div class="pan-slider-line3" style={ `background: ${bgLine} `}></div>
+                            <div class={panLess["pan-slider-line1"]} style={ `background: ${bgLine} `}></div>
+                            <div class={panLess["pan-slider-line2"]} style={ `background: ${bgLine} `}></div>
+                            <div class={panLess["pan-slider-line3"]} style={ `background: ${bgLine} `}></div>
                         </div>
                     </div>
                 </div>
