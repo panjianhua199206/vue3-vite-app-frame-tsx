@@ -67,4 +67,6 @@ declare module "*.less" {
 ### axios
 yarn add axios  
 
+数据请求：get，post，delect，put...; application/x-www-form-urlencoded，application/json   
+上传文件: post ; multipart/form-data 文件二进制格式流
 
