@@ -94,9 +94,6 @@ export default defineComponent({
             this.bindpanSliderMove(this.panSliderWidth)
         },
         // 滑块移动计算
-        /**
-         * 分析： 总宽度 - 滑块宽度
-         * */
         bindpanSliderMove(moved: number) {
             document.onmousemove = (e) => {
                 let [moveEndX, X] = [e.pageX, 0]
@@ -104,14 +101,14 @@ export default defineComponent({
                 X = moveEndX - this.startX
                 let XEnd = X / clientWidth * 100
                 if (X > 0) {
-                    if (XEnd >= 100) {
+                    if (this.panSliderWidth >= 100) {
                         this.panSliderWidth = 100
                     } else {
                         this.panSliderWidth = moved + XEnd
                     }
                 }
                 if (X < 0) {
-                    if (XEnd <= 0) {
+                    if (this.panSliderWidth <= 0) {
                         this.panSliderWidth = 0
                     } else {
                         this.panSliderWidth = moved + XEnd
