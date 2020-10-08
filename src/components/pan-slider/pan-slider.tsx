@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import style from './pan-slider.less'
 
 export default defineComponent({
     name: 'PanSlider',
@@ -56,7 +57,7 @@ export default defineComponent({
         
         return (
             <>
-                <div class="pan-slider">
+                <div class={style["pan-slider"]}>
                     <div class="bg-pan-slider" style={panSliderCss}></div>
                     <div class="bg-pan-move" style={barStyle}></div>
                     <div class="pan-slider-bar" style={`left: ${panSliderWidth}%`}>
