@@ -49,14 +49,10 @@ export default defineComponent({
         }
     },
     setup(props, context) {
-        return {
-            props, context
-        }
+        
     },
-    render(h:any,context:any) {
-        const { panSliderWidth,panSliderCss,barStyle }:any = this
-        const { bgLine }:any = this.props
-        console.log(this.bindpanSliderStart);
+    render() {
+        const { panSliderWidth,panSliderCss,barStyle, bgLine }:any = this
         
         return (
             <>
@@ -66,9 +62,8 @@ export default defineComponent({
                     <div class="pan-slider-bar" style={`left: ${panSliderWidth}%`}>
                         <div
                             class="pan-slider-line-wrapper cursor"
-                            
+                            onMousedown={this.bindpanSliderStart.bind(this)}
                         >
-                            {/* v-on-mousedown_prevent={this.bindPanSliderStart(this)} */}
                             <div class="pan-slider-line1" style={ `background: ${bgLine} `}></div>
                             <div class="pan-slider-line2" style={ `background: ${bgLine} `}></div>
                             <div class="pan-slider-line3" style={ `background: ${bgLine} `}></div>
@@ -93,8 +88,7 @@ export default defineComponent({
     methods: {
         // 滑块开始滑动事件
         bindpanSliderStart(e: any) {
-            console.log(90,e);
-            
+            e.preventDefault()
             this.startX = e.pageX
             this.bindpanSliderMove(this.panSliderWidth)
         },
@@ -102,10 +96,10 @@ export default defineComponent({
         /**
          * 分析： 总宽度 - 滑块宽度
          * */
-        bindpanSliderMove(moved: any) {
+        bindpanSliderMove(moved: number) {
             document.onmousemove = (e) => {
                 let [moveEndX, X] = [e.pageX, 0]
-                const { clientWidth }:any = document.querySelector('.bg_pan-slider')
+                const { clientWidth }:any = document.querySelector('.bg-pan-slider')
                 X = moveEndX - this.startX
                 let XEnd = X / clientWidth * 100
                 if (X > 0) {
