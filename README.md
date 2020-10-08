@@ -7,9 +7,9 @@
 2. typeScript：   yarn add typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-plugin-vue -D
 
 ### tsx
-[Vue3.0实践：使用Vue3.0做JSX(TSX)风格的组件开发](https://blog.csdn.net/learn8more/article/details/107970726)  
-[使用 JSX/TSX 开发 Vue3 组件](https://zhuanlan.zhihu.com/p/153387704)  
-[vue3.0 tsx](https://iiong.com/vue3-use-notes/)  
+参考：[Vue3.0实践：使用Vue3.0做JSX(TSX)风格的组件开发](https://blog.csdn.net/learn8more/article/details/107970726)  
+参考：[使用 JSX/TSX 开发 Vue3 组件](https://zhuanlan.zhihu.com/p/153387704)  
+参考：[vue3.0 tsx](https://iiong.com/vue3-use-notes/)  
 
 ### vue-router  
 yarn add vue-router@4.0.0-beta.13 [【可以到npm官网查vue-router最新版本】](https://www.npmjs.com/package/vue-router)   
@@ -53,3 +53,12 @@ location / {
 
 ### less 
 yarn add less less-loader -D
+
+less module 参考： [.tsx总结(vue+typescript+less+iview)](https://www.jianshu.com/p/8a8478ac3641)  
+其实只需在src/shim.d.ts添加   
+```
+declare module "*.less" {
+  const less: any;
+  export default less;
+}
+```
