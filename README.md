@@ -70,3 +70,6 @@ yarn add axios
 数据请求：get，post，delect，put...; application/x-www-form-urlencoded，application/json   
 上传文件: post ; multipart/form-data 文件二进制格式流
 
+### node服务端
+[码云：pan-reaction-nodeserver-ts](https://gitee.com/PanJianHua/pan-reaction-nodeserver-ts)   
+[github：pan-reaction-nodeserver-ts](https://github.com/panjianhua199206/pan-reaction-nodeserver-ts)  
