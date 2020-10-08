@@ -1,4 +1,4 @@
-# vue3-vite-app-frame-ts
+# vue3-vite-app-frame-tsx
 新建 vue3 目前有俩种，分别是 vite 和 @vue/cli。【本库使用vite构建,且只使用.tsx文件格式，去除.vue文件】   
 在 Vue-Cli 使用中，发现热更新和编译页面非常慢，所以Vue3.0作者放弃基于 Webpack 开发的脚手架，全新开发新的脚手架：Vite 。
 
