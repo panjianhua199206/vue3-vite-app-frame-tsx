@@ -1,24 +1,16 @@
 import { defineComponent } from 'vue'
 import PanSlider from '../components/pan-slider/pan-slider'
-import PanAudio from '../components/pan-audio/pan-audio'
+import PanAudioWaveform from '../components/pan-audio-waveform/pan-audio-waveform'
+import music from '../assets/music/xiaona.mp3'
 // import logo from '../assets/logo.png'
 
 export default defineComponent({
-  name: 'Title',
-  props: {
-    title: {
-      type: String,
-      require: false,
-      default: 'This is title.'
-    }
-  },
-  setup(props, context) {
+  data() {
     return {
-      props, context
+      title: 'This is title.'
     }
   },
   render() {
-    const { props, context } = this
     return (
       <>
         <div style="height: 100px;">
@@ -27,17 +19,15 @@ export default defineComponent({
         </div>
         <h3>7878</h3>
         {/* <img src={logo} alt=""/> */}
-        <h1 class="title" onClick={() => context.emit('data')}>
-          {props.title}
+        <h1 class="title">
+          {this.title}
         </h1>
-        <PanAudio></PanAudio>
+        <PanAudioWaveform autoplay={true} loop={true} music={music}></PanAudioWaveform>
       </>
     )
 
   },
   mounted() {
-    let tupleType: [string, boolean];
-    tupleType = ["semlinker", true];
 
   },
   methods: {
