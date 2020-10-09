@@ -73,3 +73,6 @@ yarn add axios
 ### node服务端
 [码云：pan-reaction-nodeserver-ts](https://gitee.com/PanJianHua/pan-reaction-nodeserver-ts)   
 [github：pan-reaction-nodeserver-ts](https://github.com/panjianhua199206/pan-reaction-nodeserver-ts)  
+
+### aduio 音波
+[HTML5 Canvas 实现简易 绘制音乐环形频谱图](https://www.jianshu.com/p/14f1a5af6dd6)
