@@ -1,14 +1,6 @@
 import { defineComponent, onMounted, nextTick, reactive } from 'vue'
 import panLess from './pan-audio-waveform.module.less'
 
-/*
-    analyserNode 提供了时时频率以及时间域的分析信息
-    允许你获取实时的数据，并进行音频可视化
-    analyserNode接口的fftSize属性
-    fftSize:无符号长整型值，用于确定频域的FFT(快速傅里叶变换)
-    ffiSize属性值是从32位到32768范围内的2的非零幂,默认值是2048
-*/
-
 export default defineComponent({
     name: 'PanAudioWaveform',
     props: {
@@ -59,6 +51,14 @@ export default defineComponent({
         })
         const init = () => {
             getLRC()
+
+            /*
+            analyserNode 提供了时时频率以及时间域的分析信息
+            允许你获取实时的数据，并进行音频可视化
+            analyserNode接口的fftSize属性
+            fftSize:无符号长整型值，用于确定频域的FFT(快速傅里叶变换)
+            ffiSize属性值是从32位到32768范围内的2的非零幂,默认值是2048
+            */
 
             // 创建音频上下文对象
             const oCtx = new AudioContext();
