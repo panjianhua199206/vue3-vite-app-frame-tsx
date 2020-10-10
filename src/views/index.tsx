@@ -7,22 +7,17 @@ import music from '../assets/music/xiaona.mp3'
 export default defineComponent({
   data() {
     return {
-      title: 'This is title.'
+
     }
   },
   render() {
     return (
       <>
+        {/* <img src={logo} alt=""/> */}
+        <PanAudioWaveform loop={true} music={music}></PanAudioWaveform>
         <div style="height: 100px;">
           <PanSlider style-css="height: 10px;opacity: 0.16;background: #FF7750;" bar-css="background-image: linear-gradient(226deg, #FF9A6D 0%, #FF7750 100%);" bg-line="#FF7750" />
-          
         </div>
-        <h3>7878</h3>
-        {/* <img src={logo} alt=""/> */}
-        <h1 class="title">
-          {this.title}
-        </h1>
-        <PanAudioWaveform autoplay={true} loop={true} music={music}></PanAudioWaveform>
       </>
     )
 
@@ -31,8 +26,6 @@ export default defineComponent({
 
   },
   methods: {
-    handleTest() {
-      console.log(888)
-    }
+
   }
 })
