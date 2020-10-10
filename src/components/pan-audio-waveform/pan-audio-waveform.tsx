@@ -17,7 +17,7 @@ export default defineComponent({
             }
         }
     },
-    setup(props: any, context: any) {
+    setup(props: any) {
         interface Waveform {
             ctx: any, oW: number, oH: number, color1: any, color2: any, panAnalyser: any, panVoiceHeight: any
         }
