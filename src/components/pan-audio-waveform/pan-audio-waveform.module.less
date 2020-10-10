@@ -1,4 +1,6 @@
 
+@import '../../assets/less/panVar.less';
+
 .pan-audio {
     .pan-canvas-box {
         display: block;
@@ -52,5 +54,19 @@
         background: -webkit-gradient(linear, left top, left bottom, from(white), to(rgba(255, 255, 255, 0)));
         background: linear-gradient(to top, #fff 0, rgba(255, 255, 255, 0) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0)
+    }
+}
+
+.pan-btn-box{
+    @{ma}: 20px auto 10px auto;
+    a {
+        .dis(block);
+        .co();
+        @{fs}: @font-size-large;
+        .pa(10px 20px);
+        .ma(10px 15px);
+        @{ta}: center;
+        .gradientDeg(135deg, #069 0, #f6f 100%);
+        .bou(@border-radius-base);
     }
 }

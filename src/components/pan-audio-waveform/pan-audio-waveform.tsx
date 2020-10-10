@@ -1,4 +1,4 @@
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, nextTick, reactive, watchEffect } from 'vue'
 import panLess from './pan-audio-waveform.module.less'
 
 /*
@@ -8,13 +8,6 @@ import panLess from './pan-audio-waveform.module.less'
     fftSize:无符号长整型值，用于确定频域的FFT(快速傅里叶变换)
     ffiSize属性值是从32位到32768范围内的2的非零幂,默认值是2048
 */
-
-interface Waveform {
-    ctx: any, oW: number, oH: number, color1: any, color2: any, panAnalyser: any, panVoiceHeight: any
-}
-const panAudio: Waveform = {
-    ctx: null, oW: 0, oH: 0, color1: null, color2: null, panAnalyser: null, panVoiceHeight: null
-};
 
 export default defineComponent({
     name: 'PanAudioWaveform',
@@ -32,9 +25,14 @@ export default defineComponent({
             }
         }
     },
-    setup(props:any, context:any) {
-        console.log(props, context);
-        
+    setup(props: any, context: any) {
+        interface Waveform {
+            ctx: any, oW: number, oH: number, color1: any, color2: any, panAnalyser: any, panVoiceHeight: any
+        }
+        const panAudio: Waveform = {
+            ctx: null, oW: 0, oH: 0, color1: null, color2: null, panAnalyser: null, panVoiceHeight: null
+        };
+
         let panWaveform = panAudio,
             count = 150, // 音频波的条数
             paused = true, // 是否暂停
@@ -47,25 +45,23 @@ export default defineComponent({
                 offset: 0, //时间补偿值，单位毫秒，用于调整歌词整体位置
                 ms: [] //歌词数组{t:时间,c:歌词}
             }
-        const init = ()  => {
+        let [oAudio, canvas, playRet]: any = ['', '', reactive({ paused })]
+        const panAudioBox = (el: any) => {
+            oAudio = el;
+        }
+
+        const panCanvasBox = (el: any) => {
+            canvas = el;
+        }
+
+        nextTick(() => {
+            console.log(oAudio, canvas);
+        })
+        const init = () => {
             getLRC()
-            const [oAudio, canvas]: any = [
-                document.getElementById('pan-audio-box'),
-                document.getElementById('pan-canvas-box')
-            ];
-            window.onclick = () => {
-                if (oAudio.paused) {
-                    paused = false;
-                    oAudio.play();
-                } else {
-                    paused = true;
-                    oAudio.pause();
-                }
-            }
 
             // 创建音频上下文对象
             const oCtx = new AudioContext();
-            // console.log(oCtx);
             // 创建媒体源,除了audio本身可以获取，也可以通过oCtx对象提供的api进行媒体源操作
             const audioSrc = oCtx.createMediaElementSource(oAudio);
             // 创建分析机 
@@ -133,21 +129,37 @@ export default defineComponent({
         const getLRC = () => {
             console.log(lrc, oLRC) // 歌词后续
         }
+
+        const handlePlayer = () => {
+            if (oAudio.paused) {
+                    paused = false;
+                    oAudio.play();
+            } else {
+                paused = true;
+                oAudio.pause();
+            }
+            playRet.paused = paused
+        }
+
         onMounted(() => {
             init()
         })
+
         return () => (
             <>
                 <div class={panLess["pan-audio"]}>
                     <div class={panLess["pan-aplayer-lrc"]}>
-                        <ul id="lrclist" class={panLess["pan-aplayer-lrc-contents"]} style="transform: translateY(0px);">
+                        <ul ref="lrclist" class={panLess["pan-aplayer-lrc-contents"]} style="transform: translateY(0px);">
 
                         </ul>
                     </div>
-                    <audio id="pan-audio-box" loop={props.loop}>
+                    <audio ref={panAudioBox} loop={props.loop}>
                         <source src={props.music} type="audio/mpeg" />
                     </audio>
-                    <canvas class={panLess["pan-canvas-box"]} id="pan-canvas-box"></canvas>
+                    <canvas class={panLess["pan-canvas-box"]} ref={panCanvasBox}></canvas>
+                </div>
+                <div class={panLess["pan-btn-box"]}>
+                    <a href="javascript:;" class="" onClick={handlePlayer}>{playRet.paused ? '播放' : '暂停'}</a>
                 </div>
             </>
         )
