@@ -15,7 +15,7 @@ export default defineComponent({
       <>
         {/* <img src={logo} alt=""/> */}
         <PanAudioWaveform loop={true} music={music}></PanAudioWaveform>
-        <div style="height: 100px;">
+        <div style="height: 100px;width: 100%;overflow: hidden;">
           <PanSlider style-css="height: 10px;opacity: 0.16;background: #FF7750;" bar-css="background-image: linear-gradient(226deg, #FF9A6D 0%, #FF7750 100%);" bg-line="#FF7750" />
         </div>
       </>

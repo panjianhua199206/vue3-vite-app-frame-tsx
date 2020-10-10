@@ -114,14 +114,17 @@ export default defineComponent({
             watchSliderWidth.width = panSliderWidth
         }
 
-        onMounted(() => {
+        const countSliderStyle = () => {
             panSliderCss = `height: ${props.panSliderHeight}px;${props.styleCss}`
-            barStyle = `width: ${panSliderWidth}%;height: ${props.panSliderHeight}px;${props.barCss}`
+            barStyle = `width: ${watchSliderWidth.width}%;height: ${props.panSliderHeight}px;${props.barCss}`
+        }
+
+        onMounted(() => {
+            countSliderStyle()
         })
 
         watchEffect (() => {
-            panSliderCss = `height: ${props.panSliderHeight}px;${props.styleCss}`
-            barStyle = `width: ${watchSliderWidth.width}%;height: ${props.panSliderHeight}px;${props.barCss}`
+            countSliderStyle()
         })
 
         return () => (
