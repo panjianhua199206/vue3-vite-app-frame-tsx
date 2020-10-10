@@ -1,0 +1,122 @@
+/* less变量start */
+
+// key
+@bgc: background-color;
+@bg: background;
+@bgimg: background-image;
+@po: position;
+@wd: width;
+@ht: height;
+@bo: border;
+@ma: margin;
+@pa: padding;
+@fs: font-size;
+@co: color;
+
+@lf: left;
+@rg: right;
+@ce: center;
+@bt: bottom;
+@to: top;
+@jc: justify-content;
+@ai: align-items;
+@ta: text-align;
+@bou: border-radius;
+@bs: box-shadow;
+
+// value
+@fff-color: #fff;
+@ccc-color: #ccc;
+@primary-color : #FF7750;
+@info-color : #2db7f5;
+@success-color : #19be6b;
+@warning-color : #ff9900;
+@error-color : #ed4014;
+@normal-color : #e6ebf1;
+
+@font-family : "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+@title-color : #17233d;
+@text-color : #515a6e;
+@font-size-base : 14px;
+@font-size-small : 10px;
+@font-size-large : 24px;
+@border-radius-base : 6px;
+@border-radius-small : 4px;
+
+/* less变量end */
+
+/* 函数start */
+.wd(@numStr,@type: '') when (@type = ''){
+    @{wd}: @numStr;
+}
+.wd(@numStr,@type: '') when not (@type = ''){
+    @{type}-@{wd}: @numStr;
+}
+.hg(@numStr,@type: '') when (@type = ''){
+    @{ht}: @numStr;
+}
+.hg(@numStr,@type: '') when not (@type = ''){
+    @{type}-@{ht}: @numStr;
+}
+.ov(@val:auto){
+    overflow: @val;
+}
+.po(@val:relative){
+    @{po}: @val;
+}
+.zi(@val:100){
+    z-index: @val;
+}
+.ma(@val,@type: '') when (@type = ''){
+    @{ma}: @val;
+}
+.ma(@val,@type: '') when not (@type = ''){
+    @{ma}-@{type}: @val;
+}
+.pa(@val,@type: '') when (@type = ''){
+    @{pa}: @val;
+}
+.pa(@val,@type: '') when not (@type = ''){
+    @{pa}-@{type}: @val;
+}
+
+.jc(@val:@ce){
+    @{js}: @val;
+}
+.bo(@val,@type: '') when (@type = ''){
+    @{bo}: @val;
+}
+.bo(@val,@type: '') when not (@type = ''){
+    @{bo}-@{type}: @val;
+}
+.bou(@val){
+    @{bou}: @val;
+}
+.bs(@val){
+    @{bs}: @val;
+}
+.dis(@val:flex){
+    display: @val;
+}
+
+.bg(@val:#fff, @type: @bgc){
+    @{type}: @val;
+}
+.co(@val: #fff, @type: @co){
+    @{type}: @val;
+}
+.fs(@num:14){
+   @{fs}: @num - 0px; 
+}
+.texta(@val:@ce){
+    @{ta}: @val;
+}
+.ai(@val:@ce){
+    @{ai}: @val;
+}
+
+// 渐变
+.gradientDeg(@deg, @toColor, @formColor) {
+    @{bgimg}: linear-gradient(@deg, @toColor, @formColor);
+}
+/* 函数end */
