@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, nextTick, reactive, watchEffect } from 'vue'
+import { defineComponent, onMounted, nextTick, reactive } from 'vue'
 import panLess from './pan-audio-waveform.module.less'
 
 /*
