@@ -41,7 +41,8 @@ export default defineComponent({
     data() {
         return {
             panWaveform: panAudio,
-            count: 150 // 音频波的条数
+            count: 150, // 音频波的条数
+            paused: true // 是否暂停
         }
     },
     setup(props, context) {
@@ -50,7 +51,9 @@ export default defineComponent({
     render() {
         return (
             <>
-                <audio id="audio-box" src={this.music} autoplay={this.autoplay} loop={this.loop}></audio>
+                <audio id="audio-box" autoplay={this.autoplay} loop={this.loop}>
+                    <source src={this.music} type="audio/mpeg" />
+                </audio>
                 <canvas class={panLess["canvas-box"]} id="canvas-box"></canvas>
             </>
         )
@@ -67,10 +70,12 @@ export default defineComponent({
                 document.getElementById('audio-box'),
                 document.getElementById('canvas-box')
             ];
-            window.onclick = function () {
+            window.onclick =  () => {
                 if (oAudio.paused) {
+                    this.paused = false;
                     oAudio.play();
                 } else {
+                    this.paused = true;
                     oAudio.pause();
                 }
             }
@@ -99,7 +104,7 @@ export default defineComponent({
             console.log(this.panWaveform.ctx);
 
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = window.innerHeight * 0.75;
             this.panWaveform.oW = canvas.width;
             this.panWaveform.oH = canvas.height;
 
@@ -108,11 +113,11 @@ export default defineComponent({
             this.panWaveform.color1 = this.panWaveform.ctx.createLinearGradient(oW / 2, oH / 2 - 30, oW / 2, oH / 2 - 100);
             this.panWaveform.color2 = this.panWaveform.ctx.createLinearGradient(oW / 2, oH / 2 + 30, oW / 2, oH / 2 + 100);
             this.panWaveform.color1.addColorStop(0, '#000');
-            this.panWaveform.color1.addColorStop(.5, '#069');
-            this.panWaveform.color1.addColorStop(1, '#f6f');
+            this.panWaveform.color1.addColorStop(.25, '#069');
+            this.panWaveform.color1.addColorStop(.75, '#f6f');
             this.panWaveform.color2.addColorStop(0, '#000');
-            this.panWaveform.color2.addColorStop(.5, '#069');
-            this.panWaveform.color2.addColorStop(1, '#f6f');
+            this.panWaveform.color2.addColorStop(.25, '#069');
+            this.panWaveform.color2.addColorStop(.75, '#f6f');
             // 缓冲区:进行数据的缓冲处理，转换成二进制数据
             this.panWaveform.panVoiceHeight = new Uint8Array(this.panWaveform.panAnalyser.frequencyBinCount);
             this.draw();
@@ -125,16 +130,18 @@ export default defineComponent({
             // 自定义获取数组里边数据的频步
             const step = Math.round(panVoiceHeight.length / this.count / 2);
             ctx.clearRect(0, 0, oW, oH);
-            ctx.lineCap = "round";
             for (let i = 0; i < this.count; i++) {
-                const audioHeight = panVoiceHeight[step * i];
+                let audioHeight = panVoiceHeight[step * i] - this.count * 0.8;
+                if (this.paused) {
+                    audioHeight = panVoiceHeight[step * i];
+                }
                 ctx.fillStyle = color1;  // 绘制向上的线条
-                ctx.fillRect(oW / 2 + (i * 10), oH / 2, 17, -audioHeight);
-                ctx.fillRect(oW / 2 - (i * 10), oH / 2, 17, -audioHeight);
+                ctx.fillRect(oW / 2 + (i * 10), oH / 2, this.count * 0.1, -audioHeight);
+                ctx.fillRect(oW / 2 - (i * 10), oH / 2, this.count * 0.1, -audioHeight);
                 ctx.fillStyle = color2;  // 绘制向下的线条
-                ctx.fillRect(oW / 2 + (i * 10), oH / 2, 17, audioHeight);
-                ctx.fillRect(oW / 2 - (i * 10), oH / 2, 17, audioHeight);
-            }
+                ctx.fillRect(oW / 2 + (i * 10), oH / 2, this.count * 0.1, audioHeight);
+                ctx.fillRect(oW / 2 - (i * 10), oH / 2, this.count * 0.1, audioHeight);
+            } 
             window.requestAnimationFrame(this.draw);
         }
     }
