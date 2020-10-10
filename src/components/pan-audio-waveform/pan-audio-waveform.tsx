@@ -136,10 +136,7 @@ export default defineComponent({
         onMounted(() => {
             init()
         })
-        /**
-         * 未解决 ： 这里的 return() html会导致 init方法里的 oCtx.createMediaElementSource 报错
-         */
-        /* return (
+        return () => (
             <>
                 <div class={panLess["pan-audio"]}>
                     <div class={panLess["pan-aplayer-lrc"]}>
@@ -151,27 +148,6 @@ export default defineComponent({
                         <source src={props.music} type="audio/mpeg" />
                     </audio>
                     <canvas class={panLess["pan-canvas-box"]} id="pan-canvas-box"></canvas>
-                </div>
-            </>
-        ) */
-        return {
-            paused
-        }
-    },
-    render() {
-        return (
-            <>
-                <div class={panLess["pan-audio"]}>
-                    <div class={panLess["pan-aplayer-lrc"]}>
-                        <ul id="lrclist" class={panLess["pan-aplayer-lrc-contents"]} style="transform: translateY(0px);">
-
-                        </ul>
-                    </div>
-                    <audio id="pan-audio-box" loop={this.loop}>
-                        <source src={this.music} type="audio/mpeg" />
-                    </audio>
-                    <canvas class={panLess["pan-canvas-box"]} id="pan-canvas-box"></canvas>
-                    <a href="javascript:;">{this.paused}</a>
                 </div>
             </>
         )

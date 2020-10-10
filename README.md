@@ -4,8 +4,8 @@
 * 探索Vue3，后续熟悉Vue3新语法，待完善  
 * [本库-码云： https://gitee.com/PanJianHua/vue3-vite-app-frame-tsx](https://gitee.com/PanJianHua/vue3-vite-app-frame-tsx)  
 * [本库-github： https://github.com/panjianhua199206/vue3-vite-app-frame-tsx](https://github.com/panjianhua199206/vue3-vite-app-frame-tsx)
-* [node服务端-码云：pan-reaction-nodeserver-ts](https://gitee.com/PanJianHua/pan-reaction-nodeserver-ts)   
-* [node服务端-github：pan-reaction-nodeserver-ts](https://github.com/panjianhua199206/pan-reaction-nodeserver-ts)  
+* [node服务端-码云：pan-reaction-nodeserver-ts【待完善】](https://gitee.com/PanJianHua/pan-reaction-nodeserver-ts)   
+* [node服务端-github：pan-reaction-nodeserver-ts【待完善】](https://github.com/panjianhua199206/pan-reaction-nodeserver-ts)  
 
 #### 介绍
 1. 创建模式： yarn create vite-app {pro-name}   

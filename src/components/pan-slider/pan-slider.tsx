@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, reactive, watchEffect } from 'vue'
 import panLess from './pan-slider.module.less'
 
 export default defineComponent({
@@ -41,84 +41,108 @@ export default defineComponent({
             }
         }// 滑块基数
     },
-    data() {
-        return {
-            startX: 0,
-            panSliderWidth: 10,
-            panSliderCss: '',
-            barStyle: ''
-        }
-    },
-    setup(props, context) {
-        
-    },
-    render() {
-        const { panSliderWidth,panSliderCss,barStyle, bgLine }:any = this
-        
-        return (
-            <>
-                <div class={panLess["pan-slider"]}>
-                    <div class={[panLess["bg-pan-slider"], 'bg-pan-slider'].join(' ')} style={panSliderCss}></div>
-                    <div class={panLess["bg-pan-move"]} style={barStyle}></div>
-                    <div class={panLess["pan-slider-bar"]} style={`left: ${panSliderWidth}%`}>
-                        <div
-                            class={panLess["pan-slider-line-wrapper"]}
-                            onMousedown={this.bindpanSliderStart.bind(this)}
-                        >
-                            <div class={panLess["pan-slider-line1"]} style={ `background: ${bgLine} `}></div>
-                            <div class={panLess["pan-slider-line2"]} style={ `background: ${bgLine} `}></div>
-                            <div class={panLess["pan-slider-line3"]} style={ `background: ${bgLine} `}></div>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    },
-    mounted() {
-        const { styleCss, barCss, panSliderHeight, panSliderWidth }:any = this
-        this.panSliderCss = `height: ${panSliderHeight}px;${styleCss}`
-        this.barStyle = `width: ${panSliderWidth}%;height: ${panSliderHeight}px;${barCss}`
-    },
-    watch: {
-        panSliderWidth(val) {
-            const { styleCss, barCss, panSliderHeight }:any = this
-            this.panSliderCss = `height: ${panSliderHeight}px;${styleCss}`
-            this.barStyle = `width: ${val}%;height: ${panSliderHeight}px;${barCss}`
-        }
-    },
-    methods: {
-        // 滑块开始滑动事件
-        bindpanSliderStart(e: any) {
+    setup(props: any, context: any) {
+        let startX = 0,
+            panSliderWidth = 10,
+            panSliderCss = '',
+            barStyle = '',
+            watchSliderWidth = reactive({ width: panSliderWidth })
+
+        // 滑块开始鼠标拖动事件
+        const bindpanSliderStart = (e: any) => {
             e.preventDefault()
-            this.startX = e.pageX
-            this.bindpanSliderMove(this.panSliderWidth)
-        },
+            startX = e.pageX
+            bindpanSliderMove(panSliderWidth)
+        }
+
         // 滑块移动计算
-        bindpanSliderMove(moved: number) {
+        const bindpanSliderMove = (moved: number) => {
             document.onmousemove = (e) => {
                 let [moveEndX, X] = [e.pageX, 0]
-                const { clientWidth }:any = document.querySelector('.bg-pan-slider')
-                X = moveEndX - this.startX
+                const { clientWidth }: any = document.querySelector('.bg-pan-slider')
+                X = moveEndX - startX
                 let XEnd = X / clientWidth * 100
                 if (X > 0) {
-                    if (this.panSliderWidth >= 100) {
-                        this.panSliderWidth = 100
+                    if (panSliderWidth >= 100) {
+                        panSliderWidth = 100
                     } else {
-                        this.panSliderWidth = moved + XEnd
+                        panSliderWidth = moved + XEnd
                     }
                 }
                 if (X < 0) {
-                    if (this.panSliderWidth <= 0) {
-                        this.panSliderWidth = 0
+                    if (panSliderWidth <= 0) {
+                        panSliderWidth = 0
                     } else {
-                        this.panSliderWidth = moved + XEnd
+                        panSliderWidth = moved + XEnd
                     }
                 }
+                watchSliderWidth.width = panSliderWidth
             }
             document.onmouseup = () => {
                 document.onmousemove = null
                 document.onmouseup = null
             }
         }
+        // 滑块开始滑动事件
+        let moved:any;
+        const bindpanSliderToucStart = (e: any) => {
+            e.preventDefault()
+            startX = e.changedTouches[0].pageX
+            moved = panSliderWidth
+        }
+        // 滑动
+        const bindpanSliderTouchMove = (e: any) => {
+            let [moveEndX, X] = [e.changedTouches[0].pageX, 0]
+            const { clientWidth }: any = document.querySelector('.bg-pan-slider')
+            X = moveEndX - startX
+            let XEnd = X / clientWidth * 100
+
+            if (X > 0) {
+                if (panSliderWidth >= 100) {
+                    panSliderWidth = 100
+                } else {
+                    panSliderWidth = moved + XEnd
+                }
+            }
+            if (X < 0) {
+                if (panSliderWidth <= 0) {
+                    panSliderWidth = 0
+                } else {
+                    panSliderWidth = moved + XEnd
+                }
+            }
+            watchSliderWidth.width = panSliderWidth
+        }
+
+        onMounted(() => {
+            panSliderCss = `height: ${props.panSliderHeight}px;${props.styleCss}`
+            barStyle = `width: ${panSliderWidth}%;height: ${props.panSliderHeight}px;${props.barCss}`
+        })
+
+        watchEffect (() => {
+            panSliderCss = `height: ${props.panSliderHeight}px;${props.styleCss}`
+            barStyle = `width: ${watchSliderWidth.width}%;height: ${props.panSliderHeight}px;${props.barCss}`
+        })
+
+        return () => (
+            <>
+                <div class={panLess["pan-slider"]}>
+                    <div class={[panLess["bg-pan-slider"], 'bg-pan-slider'].join(' ')} style={panSliderCss}></div>
+                    <div class={panLess["bg-pan-move"]} style={barStyle}></div>
+                    <div class={panLess["pan-slider-bar"]} style={`left: ${watchSliderWidth.width}%`}>
+                        <div
+                            class={panLess["pan-slider-line-wrapper"]}
+                            onMousedown={bindpanSliderStart}
+                            onTouchstart={bindpanSliderToucStart}
+                            onTouchmove={bindpanSliderTouchMove}
+                        >
+                            <div class={panLess["pan-slider-line1"]} style={`background: ${props.bgLine} `}></div>
+                            <div class={panLess["pan-slider-line2"]} style={`background: ${props.bgLine} `}></div>
+                            <div class={panLess["pan-slider-line3"]} style={`background: ${props.bgLine} `}></div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
     }
 })
