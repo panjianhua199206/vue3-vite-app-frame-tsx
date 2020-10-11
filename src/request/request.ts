@@ -38,6 +38,7 @@ export default function ajax(url:string, params = {}, method: 'get', isForm = fa
             url,
             method,
             data: params,
+            params,
             headers: {
                 'content-type': isFormFn(isForm)
             }
