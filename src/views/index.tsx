@@ -5,13 +5,8 @@ import music from '../assets/music/xiaona.mp3'
 // import logo from '../assets/logo.png'
 
 export default defineComponent({
-  data() {
-    return {
-
-    }
-  },
-  render() {
-    return (
+  setup() {
+    return () => (
       <>
         {/* <img src={logo} alt=""/> */}
         <PanAudioWaveform loop={true} music={music}></PanAudioWaveform>
@@ -20,12 +15,5 @@ export default defineComponent({
         </div>
       </>
     )
-
-  },
-  mounted() {
-
-  },
-  methods: {
-
   }
 })

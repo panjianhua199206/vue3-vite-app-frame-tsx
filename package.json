@@ -1,5 +1,5 @@
 {
-  "name": "vue3-vite-app-ts",
+  "name": "vue3-vite-app-frame-tsx",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

@@ -60,7 +60,7 @@ location / {
 ### less 
 * yarn add less less-loader -D
 
-* less module 参考： [.tsx总结(vue+typescript+less+iview)](https://www.jianshu.com/p/8a8478ac3641)  
+* less module 参考：[.tsx总结(vue+typescript+less+iview)](https://www.jianshu.com/p/8a8478ac3641)  
 * 其实只需在src/shim.d.ts添加   
 ```
 declare module "*.less" {
