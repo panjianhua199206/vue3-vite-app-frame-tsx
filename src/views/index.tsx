@@ -3,9 +3,13 @@ import PanSlider from '../components/pan-slider/pan-slider'
 import PanAudioWaveform from '../components/pan-audio-waveform/pan-audio-waveform'
 import music from '../assets/music/xiaona.mp3'
 // import logo from '../assets/logo.png'
+import checkAjax from './../request/nodeserver-check-request';
 
 export default defineComponent({
   setup() {
+    const checkRequest = new checkAjax;
+    checkRequest.getArticlesList(1,1);
+    checkRequest.getArticlesDetail(2);
     return () => (
       <>
         {/* <img src={logo} alt=""/> */}
