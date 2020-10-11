@@ -83,4 +83,5 @@ declare module "*.less" {
 * [HTML5 Canvas 实现简易 绘制音乐环形频谱图](https://www.jianshu.com/p/14f1a5af6dd6)
 
 ### vite.config.ts
-* 后续完善
+* 参考：[vite.config.ts基础配置分享](https://www.cnblogs.com/Man-Dream-Necessary/p/13725049.html)  
+* 参考：[Vue3 配置文件vite.config.js——请求代理、第三方模块引用、别名alias](https://blog.csdn.net/hbiao68/article/details/108972775)
